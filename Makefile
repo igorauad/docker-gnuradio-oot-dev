@@ -1,7 +1,7 @@
 DIST = ubuntu:focal
 DIST_ALT = $(subst :,-,$(DIST))
 GR_VERSION = 3.9.2
-DOCKERHUB_REPO = igorfreire
+DOCKERHUB_REPO = $(USER)
 
 .PHONY: all build push
 
