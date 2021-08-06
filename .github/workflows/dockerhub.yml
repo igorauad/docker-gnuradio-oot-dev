@@ -36,4 +36,4 @@ jobs:
           build-args: |
             dist=ubuntu:${{ matrix.ubuntu-version }}
             gr_version=${{ matrix.gr-version }}
-          tags: ${{ env.IMG }}:${{ matrix.gr-version }}-${{ matrix.ubuntu-version }}
+          tags: ${{ env.IMG }}:${{ matrix.gr-version }}-ubuntu-${{ matrix.ubuntu-version }}
