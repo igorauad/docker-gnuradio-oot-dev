@@ -4,4 +4,11 @@ FROM $dist
 RUN apt update && apt install -y software-properties-common
 RUN add-apt-repository ppa:gnuradio/gnuradio-releases && \
 	apt update && \
-	apt install -y gnuradio-dev=$gr_version*
+	apt install -y \
+	cmake \
+	doxygen \
+	git \
+	graphviz \
+	gnuradio-dev=$gr_version* \
+	python3-pip
+RUN pip3 install pygccxml
