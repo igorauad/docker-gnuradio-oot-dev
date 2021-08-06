@@ -32,6 +32,7 @@ jobs:
           IMG: ${{ secrets.DOCKERHUB_USERNAME }}/gnuradio-oot-dev
         with:
           push: true
+          platforms: linux/amd64,linux/arm64
           build-args: |
             dist=ubuntu:${{ matrix.ubuntu-version }}
             gr_version=${{ matrix.gr-version }}
