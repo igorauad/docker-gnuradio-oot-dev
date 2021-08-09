@@ -9,6 +9,7 @@ RUN add-apt-repository ppa:gnuradio/gnuradio-releases && \
 	doxygen \
 	git \
 	graphviz \
+	gnuradio=$gr_version* \
 	gnuradio-dev=$gr_version* \
 	python3-pip
 RUN pip3 install pygccxml
