@@ -11,5 +11,7 @@ RUN add-apt-repository ppa:gnuradio/gnuradio-releases && \
 	graphviz \
 	gnuradio=$gr_version* \
 	gnuradio-dev=$gr_version* \
-	python3-pip
+	pkg-config \
+	python3-pip \
+	swig
 RUN pip3 install pygccxml
