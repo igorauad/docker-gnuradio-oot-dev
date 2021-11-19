@@ -1,22 +1,19 @@
-name: ci
-
+name: Manual Docker Hub Push
 on:
-  push:
-    branches:
-      - 'master'
+  workflow_dispatch:
+    inputs:
+      ubuntu_version:
+        description: 'Ubuntu Version'
+        required: true
+        default: 'focal'
+      gr_version:
+        description: 'GR Version'
+        required: true
+        default: 3.9.3
 
 jobs:
   docker:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        include:
-          - ubuntu-version: focal
-            gr-version: 3.9.2
-          - ubuntu-version: bionic
-            gr-version: 3.8.2
-          - ubuntu-version: bionic
-            gr-version: 3.7.11
     steps:
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -32,13 +29,13 @@ jobs:
         uses: docker/build-push-action@v2
         env:
           IMG: ${{ secrets.DOCKERHUB_USERNAME }}/gnuradio-oot-dev
-          TAG: ${{ matrix.gr-version }}-ubuntu-${{ matrix.ubuntu-version }}
+          TAG: ${{ github.event.inputs.gr_version }}-ubuntu-${{ github.event.inputs.ubuntu_version }}
         with:
           push: true
           platforms: linux/amd64,linux/arm64
           build-args: |
-            dist=ubuntu:${{ matrix.ubuntu-version }}
-            gr_version=${{ matrix.gr-version }}
+            dist=ubuntu:${{ github.event.inputs.ubuntu_version }}
+            gr_version=${{ github.event.inputs.gr_version }}
           tags: ${{ env.IMG }}:${{ env.TAG }}
           cache-from: type=registry,ref=${{ env.IMG }}:${{ env.TAG }}
           cache-to: type=inline
