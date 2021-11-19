@@ -7,6 +7,7 @@ RUN add-apt-repository ppa:gnuradio/gnuradio-releases && \
 	DEBIAN_FRONTEND="noninteractive" apt install -y \
 	cmake \
 	doxygen \
+	gir1.2-gtk-3.0 \
 	git \
 	graphviz \
 	gnuradio=$gr_version* \
