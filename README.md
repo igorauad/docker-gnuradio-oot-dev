@@ -122,7 +122,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: igorfreire/gnuradio-oot-dev:3.9.2-ubuntu-focal
+      image: igorfreire/gnuradio-oot-dev:3.9.4-ubuntu-focal
       env:
           PYTHONPATH: ${{github.workspace}}/build/python/bindings
     steps:
