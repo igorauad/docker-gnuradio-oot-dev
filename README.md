@@ -55,6 +55,8 @@ For example, the `gr-dvbs2rx` image built earlier could be executed as follows:
 docker run --rm -it --privileged -v /dev/bus/usb:/dev/bus/usb --network host dvbs2rx
 ```
 
+Besides, the above Dockerfile is just a starting point. You can modify it easily to include other dependencies and tools. For a more advanced use case, refer to the actual [Dockerfile used on the gr-dvbs2rx project](https://github.com/igorauad/gr-dvbs2rx/blob/master/Dockerfile).
+
 ## Multiple GNU Radio Versions in Parallel
 
 The `gnuradio-oot-dev` image can be a convenient solution to run multiple GNU Radio versions in parallel on reproducible environments.
@@ -95,7 +97,7 @@ Then launch `gnuradio-companion` inside each of them to verify it is working.
 It is often useful to keep the OOT sources on the host while developing, building, and installing binaries inside the container. To do so, you can extend the commands explained in the previous section by adding a [bind mount option](https://docs.docker.com/engine/reference/run/#volume-shared-filesystems). For example, suppose you have the OOT sources in your host at `$HOME/src/my-oot/`. Then, you could bind-mount this directory into the container as follows:
 
 ```bash
-docker-gui --rm -it \
+docker run --rm -it \
   -v $HOME/src/my-oot/:/src/my-oot/ \
   igorfreire/gnuradio-oot-dev:3.9.4-ubuntu-focal
 ```
