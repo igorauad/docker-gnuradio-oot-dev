@@ -1,6 +1,6 @@
 # GNU Radio OOT Development Environment
 
-This image provides the environment for building, testing, and running GNU Radio out-of-tree (OOT) modules. As explained below, you can use this image as the base when building a dedicated image for your OOT module. Also, you can use it to switch easily between GNU Radio versions and development environments. Furthermore, this image is adequate for usage on Github workflows, other continuous integration engines, VSCode development containers, and more. Please refer to the examples that follow.
+This image provides an easy-to-use container environment for building, testing, and running GNU Radio out-of-tree (OOT) modules. There are many ways in which you can use this image. For example, you can use it as the base when building a dedicated container image for an OOT module. Also, you can use it to switch easily between GNU Radio versions and development environments. Furthermore, this image is adequate for usage on Github workflows, other continuous integration engines, VSCode development containers, and more. Please refer to the examples that follow.
 
 - [GNU Radio OOT Development Environment](#gnu-radio-oot-development-environment)
   - [Base Image for your OOT Module](#base-image-for-your-oot-module)
