@@ -17,11 +17,12 @@ RUN add-apt-repository ppa:gnuradio/gnuradio-releases && \
 	swig
 RUN pip3 install pygccxml
 # Configure the paths required to run GR over python2 and python3
-RUN PYSITEDIR=$(python2 -m site --user-site) && \
+RUN if command -v python2 ; then \
+	PYSITEDIR=$(python2 -m site --user-site) && \
 	PYLIBDIR=$(python2 -c "from distutils import sysconfig; \
 	print(sysconfig.get_python_lib(plat_specific=False, prefix='/usr/local'))") && \
 	mkdir -p "$PYSITEDIR" && \
-	echo "$PYLIBDIR" > "$PYSITEDIR/gnuradio.pth"
+	echo "$PYLIBDIR" > "$PYSITEDIR/gnuradio.pth" ; fi
 RUN PYSITEDIR=$(python3 -m site --user-site) && \
 	PYLIBDIR=$(python3 -c "from distutils import sysconfig; \
 	print(sysconfig.get_python_lib(plat_specific=False, prefix='/usr/local'))") && \
