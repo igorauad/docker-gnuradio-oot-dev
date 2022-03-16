@@ -9,9 +9,10 @@ RUN add-apt-repository ppa:gnuradio/gnuradio-releases && \
 	doxygen \
 	gir1.2-gtk-3.0 \
 	git \
-	graphviz \
 	gnuradio=$gr_version* \
 	gnuradio-dev=$gr_version* \
+	graphviz \
+	libspdlog-dev \
 	pkg-config \
 	python3-pip \
 	swig
