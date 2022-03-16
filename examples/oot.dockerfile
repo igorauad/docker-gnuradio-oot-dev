@@ -8,7 +8,7 @@ ARG oot_name
 # Install dependencies
 RUN apt-get install -y $deps
 # Install the OOT module
-RUN git clone $oot_url && \
+RUN git clone --recursive $oot_url && \
     cd $oot_name && mkdir build && cd build/ && \
     cmake .. && \
     cmake --build . && \
