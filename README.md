@@ -1,6 +1,6 @@
 # GNU Radio OOT Development Environment
 
-This image provides an easy-to-use container environment for building, testing, and running GNU Radio out-of-tree (OOT) modules. There are many ways in which you can use this image. For example, you can use it as the base when building a dedicated container image for an OOT module. Also, you can use it to switch easily between GNU Radio versions and development environments. Furthermore, this image is adequate for usage on Github workflows, other continuous integration engines, VSCode development containers, and more. Please refer to the examples that follow.
+This image provides an easy-to-use container environment for building, testing, and running GNU Radio out-of-tree (OOT) modules. There are many ways in which you can use this image. For example, you can use it as the base of your OOT's dedicated container image. Alternatively, you can use it to switch easily between GNU Radio versions and development environments. Furthermore, this image is adequate for usage in continuous integration (CI) engines (e.g., Github workflows), VSCode development containers, and more. Please refer to the examples below.
 
 - [GNU Radio OOT Development Environment](#gnu-radio-oot-development-environment)
   - [Base Image for your OOT Module](#base-image-for-your-oot-module)
@@ -73,7 +73,7 @@ OSX
 alias docker-gui='docker run --env="DISPLAY=host.docker.internal:0"'
 ```
 
-And, in the case of OSX, you also need to authorize the container to access the host's X server:
+In the case of OSX, you also need to authorize the container to access the host's X server:
 
 ```bash
 xhost + localhost
@@ -94,11 +94,11 @@ docker-gui --rm -it --name gr3.9 igorfreire/gnuradio-oot-dev:3.9.4-ubuntu-focal
 docker-gui --rm -it --name gr3.10 igorfreire/gnuradio-oot-dev:3.10.1-ubuntu-focal
 ```
 
-Then launch `gnuradio-companion` inside each of them to verify it is working.
+Then, for example, launch `gnuradio-companion` from each container.
 
 ## OOT Development Inside Container
 
-It is often useful to keep the OOT sources on the host while developing, building, and installing binaries inside the container. To do so, you can extend the commands explained in the previous section by adding a [bind mount option](https://docs.docker.com/engine/reference/run/#volume-shared-filesystems). For example, suppose you have the OOT sources in your host at `$HOME/src/my-oot/`. Then, you could bind-mount this directory into the container as follows:
+It is often useful to keep the OOT sources on the host while developing, building, and installing binaries inside the container. To do so, you can extend the commands explained in the previous section by adding a [bind mount option](https://docs.docker.com/engine/reference/run/#volume-shared-filesystems). For example, suppose you have the OOT sources in your host at `$HOME/src/my-oot/`. In this case, you can run the container as follows:
 
 ```bash
 docker run --rm -it \
@@ -106,7 +106,7 @@ docker run --rm -it \
   igorfreire/gnuradio-oot-dev:3.10.1-ubuntu-focal
 ```
 
-In this case, option `-v $HOME/src/my-oot/:/src/my-oot/` will create a directory at `/src/my-oot/` inside the container, which you can use to access the OOT files. Any changes made in this directory are automatically reflected back to the host. For example, inside the container, build the OOT as follows:
+Option `-v $HOME/src/my-oot/:/src/my-oot/` creates a bind-mount at `/src/my-oot/` inside the container, which you can use to access the OOT files. Any changes made in this directory are automatically reflected back to the host. For example, inside the container, build the OOT as follows:
 
 ```bash
 cd /src/my-oot/
@@ -167,8 +167,9 @@ Linux
 {
   ...
   "runArgs": [
-    "-v $HOME/.Xauthority:/root/.Xauthority --network=host"
-	],
+    "-v $HOME/.Xauthority:/root/.Xauthority",
+    "--network=host"
+  ],
   "containerEnv": {
     "DISPLAY": "$DISPLAY"
   }
