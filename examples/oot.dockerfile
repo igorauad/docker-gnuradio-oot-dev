@@ -1,4 +1,4 @@
-ARG tag=3.9.4-ubuntu-focal
+ARG tag=3.10.1-ubuntu-focal
 FROM igorfreire/gnuradio-oot-dev:$tag
 # List of dependencies for your GR OOT module.
 ARG deps

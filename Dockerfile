@@ -1,6 +1,6 @@
 ARG dist=ubuntu:focal
 FROM $dist
-ARG gr_version=3.9.2
+ARG gr_version=3.10.1
 RUN apt update && apt install -y software-properties-common
 RUN add-apt-repository ppa:gnuradio/gnuradio-releases && \
 	apt update && \
