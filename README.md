@@ -14,7 +14,7 @@ This image provides an easy-to-use container environment for building, testing, 
 The following Dockerfile illustrates how the `gnuradio-oot-dev` image can serve as the base for building a dedicated image with your OOT module.
 
 ```Dockerfile
-ARG tag=3.10.1-ubuntu-focal
+ARG tag=3.10.3-ubuntu-focal
 FROM igorfreire/gnuradio-oot-dev:$tag
 # List of dependencies for your GR OOT module.
 ARG deps
@@ -91,7 +91,7 @@ docker-gui --rm -it --name gr3.9 igorfreire/gnuradio-oot-dev:3.9.4-ubuntu-focal
 ```
 
 ```bash
-docker-gui --rm -it --name gr3.10 igorfreire/gnuradio-oot-dev:3.10.1-ubuntu-focal
+docker-gui --rm -it --name gr3.10 igorfreire/gnuradio-oot-dev:3.10.3-ubuntu-focal
 ```
 
 Then, for example, launch `gnuradio-companion` from each container.
@@ -103,7 +103,7 @@ It is often useful to keep the OOT sources on the host while developing, buildin
 ```bash
 docker run --rm -it \
   -v $HOME/src/my-oot/:/src/my-oot/ \
-  igorfreire/gnuradio-oot-dev:3.10.1-ubuntu-focal
+  igorfreire/gnuradio-oot-dev:3.10.3-ubuntu-focal
 ```
 
 Option `-v $HOME/src/my-oot/:/src/my-oot/` creates a bind-mount at `/src/my-oot/` inside the container, which you can use to access the OOT files. Any changes made in this directory are automatically reflected back to the host. For example, inside the container, build the OOT as follows:
@@ -128,7 +128,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: igorfreire/gnuradio-oot-dev:3.10.1-ubuntu-focal
+      image: igorfreire/gnuradio-oot-dev:3.10.3-ubuntu-focal
       env:
           PYTHONPATH: ${{github.workspace}}/build/python/bindings
     steps:
@@ -158,7 +158,8 @@ where `tag` should be replaced by one of the available tags listed below:
 - `3.7.11-ubuntu-bionic`
 - `3.8.2-ubuntu-bionic`
 - `3.9.4-ubuntu-focal`
-- `3.10.1-ubuntu-focal`
+- `3.10.3-ubuntu-focal`
+- `3.10.2-ubuntu-jammy`
 
 Furthermore, if you would like to run GUI applications (e.g., gnuradio-companion) directly from the VSCode terminal, you can append the following to your `devcontainer.json` file:
 
