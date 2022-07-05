@@ -5,8 +5,10 @@ RUN apt update && apt install -y software-properties-common
 RUN add-apt-repository ppa:gnuradio/gnuradio-releases && \
 	apt update && \
 	DEBIAN_FRONTEND="noninteractive" apt install -y \
+	clang-format \
 	cmake \
 	doxygen \
+	gdb \
 	gir1.2-gtk-3.0 \
 	git \
 	gnuradio=$gr_version* \
