@@ -153,13 +153,7 @@ Development inside containers is greatly simplified on VSCode by using the [Remo
 }
 ```
 
-where `tag` should be replaced by one of the available tags listed below:
-
-- `3.7.11-ubuntu-bionic`
-- `3.8.2-ubuntu-bionic`
-- `3.9.4-ubuntu-focal`
-- `3.10.3-ubuntu-focal`
-- `3.10.2-ubuntu-jammy`
+where `tag` should be replaced by one of the [available tags](https://hub.docker.com/r/igorfreire/gnuradio-oot-dev/tags).
 
 Furthermore, if you would like to run GUI applications (e.g., gnuradio-companion) directly from the VSCode terminal, you can append the following to your `devcontainer.json` file:
 
