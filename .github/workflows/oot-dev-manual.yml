@@ -2,8 +2,12 @@ name: OOT Dev Image - Manual Docker Hub Push
 on:
   workflow_dispatch:
     inputs:
-      ubuntu_version:
-        description: 'Ubuntu Version'
+      distro:
+        description: 'Linux Distribution'
+        required: true
+        default: 'ubuntu'
+      distro_version:
+        description: 'Distribution Version'
         required: true
         default: 'focal'
       gr_version:
@@ -29,13 +33,13 @@ jobs:
         uses: docker/build-push-action@v2
         env:
           IMG: ${{ secrets.DOCKERHUB_USERNAME }}/gnuradio-oot-dev
-          TAG: ${{ github.event.inputs.gr_version }}-ubuntu-${{ github.event.inputs.ubuntu_version }}
+          TAG: ${{ github.event.inputs.gr_version }}-${{ github.event.inputs.distro }}-${{ github.event.inputs.distro_version }}
         with:
           push: true
           file: docker/oot-dev.dockerfile
           platforms: linux/amd64,linux/arm64
           build-args: |
-            dist=ubuntu:${{ github.event.inputs.ubuntu_version }}
+            dist=${{ github.event.inputs.distro }}:${{ github.event.inputs.distro_version }}
             gr_version=${{ github.event.inputs.gr_version }}
           tags: ${{ env.IMG }}:${{ env.TAG }}
           cache-from: type=registry,ref=${{ env.IMG }}:${{ env.TAG }}
