@@ -1,6 +1,6 @@
 DIST = ubuntu:jammy
 DIST_ALT = $(subst :,-,$(DIST))
-GR_VERSION = 3.10.5.1
+GR_VERSION = 3.10.7.0
 DOCKERHUB_REPO = $(USER)
 
 .PHONY: all build push

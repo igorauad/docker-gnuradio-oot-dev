@@ -36,7 +36,7 @@ jobs:
         with:
           push: true
           file: docker/oot-dev.dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           build-args: |
             dist=ubuntu:${{ matrix.ubuntu-version }}
             gr_version=${{ matrix.gr-version }}

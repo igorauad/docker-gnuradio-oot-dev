@@ -37,7 +37,7 @@ jobs:
         with:
           push: true
           file: docker/oot-dev.dockerfile
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64,linux/arm64,linux/arm/v7
           build-args: |
             dist=${{ github.event.inputs.distro }}:${{ github.event.inputs.distro_version }}
             gr_version=${{ github.event.inputs.gr_version }}
