@@ -9,7 +9,8 @@ FROM ${repo}/gnuradio-oot-dev:${gr_version}-${dist}
 # - PlutoSDR: libiio-utils
 # - USRP: uhd-host
 # - BladeRF: bladerf
-RUN apt-get install -y \
+RUN apt update && \
+    apt-get install -y \
     libiio-utils \
     libosmosdr-dev \
     libusb-1.0-0-dev \
