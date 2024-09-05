@@ -14,6 +14,11 @@ on:
         description: 'GR Version'
         required: true
         default: 3.10.1
+      full:
+        description: 'Full Variant'
+        type: boolean
+        required: true
+        default: false
 
 jobs:
   docker:
@@ -33,13 +38,13 @@ jobs:
         uses: docker/build-push-action@v2
         env:
           IMG: ${{ secrets.DOCKERHUB_USERNAME }}/gnuradio-oot-dev
-          TAG: ${{ github.event.inputs.gr_version }}-${{ github.event.inputs.distro }}-${{ github.event.inputs.distro_version }}
+          TAG: ${{ github.event.inputs.gr_version }}-${{ github.event.inputs.distro }}-${{ github.event.inputs.distro_version }}${{ github.event.inputs.full && '-full' || '' }}
         with:
           push: true
-          file: docker/oot-dev.dockerfile
+          file: docker/${{ github.event.inputs.full && 'oot-dev-full.dockerfile' || 'oot-dev.dockerfile'}}
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           build-args: |
-            dist=${{ github.event.inputs.distro }}:${{ github.event.inputs.distro_version }}
+            dist=${{ github.event.inputs.distro }}${{ github.event.inputs.full && '-' || ':'}}${{ github.event.inputs.distro_version }}
             gr_version=${{ github.event.inputs.gr_version }}
           tags: ${{ env.IMG }}:${{ env.TAG }}
           cache-from: type=registry,ref=${{ env.IMG }}:${{ env.TAG }}
