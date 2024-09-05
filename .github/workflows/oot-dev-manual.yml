@@ -9,11 +9,11 @@ on:
       distro_version:
         description: 'Distribution Version'
         required: true
-        default: 'focal'
+        default: 'jammy'
       gr_version:
         description: 'GR Version'
         required: true
-        default: 3.10.1
+        default: 3.10.7.0
       full:
         description: 'Full Variant'
         type: boolean
